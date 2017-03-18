@@ -1,11 +1,10 @@
 ﻿---
 layout: post
 title: button input submit 的区别
-categories: [cate1, cate2]
-date: 2017-03-18 18:15:00
+categories: 
+description: 
 keywords: JavaScript, HTML, 表单
 ---
-
 
 #### 最近项目代码中的表单提交的方式已经百花齐放了，现在用这篇文章来整理一下不同表单提交方式的区别，给出最佳实践。先给结论：
 * 建议使用`button[type=submit]`来提交表单，而不是`input`；
