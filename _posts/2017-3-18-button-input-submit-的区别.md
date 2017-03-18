@@ -1,4 +1,4 @@
-﻿---
+---
 layout: post
 title: button input submit 的区别
 categories: 
