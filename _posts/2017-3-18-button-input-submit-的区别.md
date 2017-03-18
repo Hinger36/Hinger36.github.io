@@ -1,16 +1,18 @@
 ﻿---
 layout: post
-title: 表单提交：button input submit 的区别
+title: button input submit 的区别
+categories: [cate1, cate2]
 date: 2017-03-18 18:15:00
-keywords: HTML JavaScript jQuery 事件 表单
+keywords: JavaScript, HTML, 表单
 ---
 
-####最近项目代码中的表单提交的方式已经百花齐放了，现在用这篇文章来整理一下不同表单提交方式的区别，给出最佳实践。先给结论：
+
+#### 最近项目代码中的表单提交的方式已经百花齐放了，现在用这篇文章来整理一下不同表单提交方式的区别，给出最佳实践。先给结论：
 * 建议使用`button[type=submit]`来提交表单，而不是`input`；
 * 只有单行文本控件时，回车会引发表单提交；
 * 通过`onsubmit`事件可阻止表单提交。
 
-#input[type=submit]
+# input[type=submit]
 
 这是最常见的提交方式。不多说了，看图：
 ![input@2x](/images/post/input@2x.png)
@@ -22,7 +24,7 @@ keywords: HTML JavaScript jQuery 事件 表单
   <input value='ok' type='submit'>
 </form>
 ```
-####其中有些值得注意的细节：
+#### 其中有些值得注意的细节：
 * 设置`type=submit`后，输入控件会变成一个按钮，显示的文字为其`value`值，默认值是`Submit`。
 * `form[method]`默认值为GET，所以提交后会使用GET方式进行页面跳转。
 * `input[type]`默认值为`text`，所以第一个`input`显示为文本框。
@@ -36,7 +38,7 @@ keywords: HTML JavaScript jQuery 事件 表单
 注意其中的URL为`/?key=foo&btn=ok`。作为按钮的`input`控件同时被当做一个表单输入提交给了服务器。 它到底是交互控件还是数据控件呢？定位是有些不清晰。再加上它的样式难以定制、不可作为其他标签的容器， 所以建议不要用`input`作为表单提交按钮。
 >input的type属性还可以是button，这时它只是一个按钮，不会引发表单提交。
 
-#button[type=submit]
+# button[type=submit]
 `button`的语义很明确，就是一个按钮不含数据，作用就是用户交互。但它也有`type`和`value`属性。 `type`的默认值是`submit`，所以点击一个`button`会引起表单提交：
 ```html
 <form>
@@ -60,14 +62,14 @@ keywords: HTML JavaScript jQuery 事件 表单
 对于`button`就不多说了，建议用`button`作为交互用的按钮，来提交表单。同时请注意设置`type=submit`来兼容IE。
 >IE 中button标签的type属性默认为button。
 
-#Enter 键提交表单
+# Enter 键提交表单
 Enter键是可以提交表单的！但是你可能已经注意到了，并非所有的表单都可以用Enter键来提交。来看[HTML2.0 标准](http://www.w3.org/MarkUp/html-spec/html-spec_toc.html)
 >When there is only one single-line text input field in a form, the user agent should accept Enter in that field as a request to submit the form.
 
 >当表单中只有一个单行的文本输入控件时，用户代理应当接受回车键来提交表单。
 
 “单行”指的是`type`为`text`而非`textarea`，显然在`textarea`中回车提交表单是怎样的难以接受！ 其实在实践中，有多个单行的`input`也可以用`Enter`提交，比如登录页面（太典型了，不仅是这样开发的，而且是这样使用的）。 要知道HTML2.0标准制定于1995，可以说这一句不起眼的条文影响着我的每次网站登录。W3C的这批人是有怎样的远见和智慧！
-#阻止表单提交
+# 阻止表单提交
 阻止表单提交也是一个常见的话题，通常用于客户端的表单验证。通用的办法是设置`onsubmit`：
 ```html
 <form onsubmit="return false;">
