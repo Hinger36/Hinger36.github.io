@@ -1,4 +1,4 @@
-﻿---
+---
 layout: post
 title: javascript中的this、bind、call、apply
 categories: 
