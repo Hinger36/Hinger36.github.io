@@ -141,11 +141,11 @@ obj.test.apply(foo)
 
 ### this语法糖
 到这里几乎把函数调用的方式都举例了，总的来说就三种：
-
+```javascript
 * func()
 * obj.func()
 * func.call() || func.apply()
-
+```
 通常使用的都前两种，然而事实是前两种都是以第三种调用模式实现的语法糖，本质还是第三种调用，这样做只为让语法更简洁。
 
 因此`func()` 等价于 `func.call(this)`，`obj.func()` 等价于 `obj.func.call(obj)`
